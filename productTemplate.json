@@ -1,0 +1,20 @@
+[
+  {
+    "id": "id",
+    "title": "nombre",
+    "description": "descripcion",
+    "thumbnail": "",
+    "weight": "peso",
+    "discount": true,
+    "variantTitle": "One size",
+    "variantInventory": 100,
+    "variantAllowBackorder": false,
+    "variantManage": true,
+    "priceEur": "10",
+    "priceUSD": "10",
+    "optionName": "size",
+    "optionValue": "S",
+    "imageUrl1": "url",
+    "imageUrl2": "url"
+  }
+]
