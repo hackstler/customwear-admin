@@ -1,3 +1,26 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "version": 2,
+  "builds": [
+    {
+      "src": "./",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["dist/**"]
+      }
+    },
+    {
+      "src": "./",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "./",
+      "dest": "dist/"
+    },
+    {
+      "src": "./)",
+      "dest": "build/"
+    }
+  ]
 }
