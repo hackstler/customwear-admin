@@ -15,14 +15,19 @@ COPY . .
 
 # Construye el back-end de TypeScript y el front-end
 RUN npm run build
-
+RUN ls -la 
 # Comienza una nueva etapa para producir una imagen limpia
 FROM node:18
 
 WORKDIR /app
 
 # Copia las dependencias necesarias y los archivos construidos desde la etapa de construcción
-COPY --from=builder /app ./app
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/build ./build
+
+RUN ls -la 
 
 # Expone los puertos para el back-end y el front-end
 EXPOSE 9000 7001
