@@ -30,4 +30,4 @@ RUN ls -la
 EXPOSE 9000 7001
 
 # El comando para ejecutar tu aplicación, ajusta según la necesidad de tu proyecto
-CMD ["npm", "start"]
+CMD ["sh", "-c", "medusa migrations run && npm start"]
