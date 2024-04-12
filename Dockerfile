@@ -30,4 +30,4 @@ COPY --from=builder /app/build ./build
 EXPOSE 9000 7001
 
 # El comando para ejecutar tu aplicación, ajusta según la necesidad de tu proyecto
-CMD ["node", "dist/index.js"]
+CMD ["npm", "start"]
