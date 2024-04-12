@@ -1,1 +1,1 @@
-web: medusa start
+web: npm start

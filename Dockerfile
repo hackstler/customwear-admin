@@ -22,10 +22,7 @@ FROM node:18
 WORKDIR /app
 
 # Copia las dependencias necesarias y los archivos construidos desde la etapa de construcción
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/build ./build
+COPY --from=builder /app ./
 
 RUN ls -la 
 
