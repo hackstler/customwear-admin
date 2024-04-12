@@ -22,9 +22,7 @@ FROM node:18
 WORKDIR /app
 
 # Copia las dependencias necesarias y los archivos construidos desde la etapa de construcción
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/build ./build
+COPY --from=builder /app ./app
 
 # Expone los puertos para el back-end y el front-end
 EXPOSE 9000 7001
