@@ -65,9 +65,9 @@ const plugins = [
     resolve: `medusa-plugin-sendgrid`,
     options: {
       api_key: process.env.SENDGRID_API_KEY,
-      from: "sergio@customwear.es",
-      order_placed_template: "d-630e1eb8af8d41cfbef953b09b4a5c5b",
-      user_password_reset_template: "d-630e1eb8af8d41cfbef953b09b4a5c5b",
+      from: process.env.SENDGRID_FROM,
+      order_placed_template: process.env.SENDGRID_ORDER_PLACED_TEMPLATE,
+      user_password_reset_template: process.env.SENDGRID_USER_PASSWORD_RESET_TEMPLATE,
 
     },
   },
