@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Configurar SSH para acceso a Compute Engine
         run: |
-          echo "${{ secrets }}" 
+          echo ${{ secrets }}
           echo "${{ secrets.GCE_SSH_PRIVATE_KEY }}" > key
           chmod 600 key
           echo "${{ secrets.GCE_SSH_PUBLIC_KEY }}" > key.pub
