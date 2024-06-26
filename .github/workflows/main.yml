@@ -11,20 +11,27 @@ jobs:
 
     steps:
       - name: Configurar SSH para acceso a Compute Engine
+        env:
+          GCE_SSH_PRIVATE_KEY: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
+          GCE_SSH_PUBLIC_KEY: ${{ secrets.GCE_SSH_PUBLIC_KEY }}
         run: |
-          echo ${{ secrets }}
-          echo "${{ secrets.GCE_SSH_PRIVATE_KEY }}" > key
+          echo $GCE_SSH_PRIVATE_KEY
+          echo $GCE_SSH_PRIVATE_KEY > key
           chmod 600 key
-          echo "${{ secrets.GCE_SSH_PUBLIC_KEY }}" > key.pub
+          echo $GCE_SSH_PUBLIC_KEY > key.pub
 
       - name: Añadir clave SSH
+        env:
+          GCE_SSH_PRIVATE_KEY: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
+          GCE_SSH_USER: ${{ secrets.GCE_SSH_USER }}
+          GCE_INSTANCE_IP: ${{ secrets.GCE_INSTANCE_IP }}
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
+          ssh-private-key: $GCE_SSH_PRIVATE_KEY
 
       - name: Desplegar a Dokku en Compute Engine
         run: |
-          ssh -i key -o StrictHostKeyChecking=no ${{ secrets.GCE_SSH_USER }}@${{ secrets.GCE_INSTANCE_IP }} << 'EOF'
+          ssh -i key -o StrictHostKeyChecking=no $GCE_SSH_USER@$GCE_INSTANCE_IP << 'EOF'
           cd /home/dokku/app/medusa-admin
           git pull origin main
           git push origin dokku
