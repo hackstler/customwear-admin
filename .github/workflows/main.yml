@@ -1,0 +1,33 @@
+name: Despliegue a Google Cloud
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configurar SSH para acceso a Compute Engine
+        run: |
+          echo "${{ secrets.GCE_SSH_PRIVATE_KEY }}" > key
+          chmod 600 key
+          echo "${{ secrets.GCE_SSH_PUBLIC_KEY }}" > key.pub
+
+      - name: Añadir clave SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
+
+      - name: Desplegar a Dokku en Compute Engine
+        run: |
+          ssh -i key -o StrictHostKeyChecking=no ${{ secrets.GCE_SSH_USER }}@${{ secrets.GCE_INSTANCE_IP }} << 'EOF'
+          cd /home/dokku/app/medusa-admin
+          git pull origin main
+          git push origin dokku
+          EOF
+
+      - name: Finalizar despliegue
+        run: echo "El despliegue ha finalizado exitosamente"
