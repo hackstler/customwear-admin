@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+env:
+  ENVIRONMENT: production
 
 jobs:
   deploy:
@@ -16,7 +18,6 @@ jobs:
           GCE_SSH_PUBLIC_KEY: ${{ secrets.GCE_SSH_PUBLIC_KEY }}
         run: |
           echo $GCE_SSH_PRIVATE_KEY
-          env
           echo $GCE_SSH_PRIVATE_KEY > key
           chmod 600 key
           echo $GCE_SSH_PUBLIC_KEY > key.pub
