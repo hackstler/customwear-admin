@@ -14,19 +14,17 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Configurar SSH para acceso a Compute Engine
-        env:
-          GCE_SSH_PRIVATE_KEY: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
-          GCE_SSH_PUBLIC_KEY: ${{ secrets.GCE_SSH_PUBLIC_KEY }}
         run: |
-          echo "${GCE_SSH_PRIVATE_KEY}" | tr -d '\r' > key
+          echo "${{ secrets.GCE_SSH_PRIVATE_KEY }}" | tr -d '\r' > key
           chmod 600 key
-          echo "${GCE_SSH_PUBLIC_KEY}" | tr -d '\r' > key.pub
+          echo "${{ secrets.GCE_SSH_PUBLIC_KEY }}" | tr -d '\r' > key.pub
           chmod 600 key.pub
 
       - name: Añadir clave SSH
         uses: webfactory/ssh-agent@v0.5.3
         with:
-          ssh-private-key: ${{ secrets.GCE_SSH_PRIVATE_KEY }}
+          ssh-private-key: |
+            ${{ secrets.GCE_SSH_PRIVATE_KEY }}
 
       - name: Desplegar a Dokku en Compute Engine
         env:
