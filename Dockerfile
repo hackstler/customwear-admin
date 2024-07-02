@@ -8,14 +8,14 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instala todas las dependencias, incluyendo las devDependencies para construir el proyecto
-RUN npm start
+RUN npm install
 
 # Copia el resto del código fuente del proyecto
 COPY . .
 # Construye el back-end de TypeScript y el front-end
 EXPOSE 7001
 
-RUN npm run build
+RUN npm run start
 
 
 # RUN ls -la 
