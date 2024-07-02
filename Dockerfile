@@ -8,28 +8,29 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instala todas las dependencias, incluyendo las devDependencies para construir el proyecto
-RUN npm install
+RUN npm start
 
 # Copia el resto del código fuente del proyecto
 COPY . .
 # Construye el back-end de TypeScript y el front-end
+EXPOSE 7001
+
 RUN npm run build
 
-EXPOSE 7001
 
-RUN ls -la 
-# Comienza una nueva etapa para producir una imagen limpia
-FROM node:18
+# RUN ls -la 
+# # Comienza una nueva etapa para producir una imagen limpia
+# FROM node:18
 
-WORKDIR /app
+# WORKDIR /app
 
-# Copia las dependencias necesarias y los archivos construidos desde la etapa de construcción
-COPY --from=builder /app ./
+# # Copia las dependencias necesarias y los archivos construidos desde la etapa de construcción
+# COPY --from=builder /app ./
 
-RUN ls -la 
+# RUN ls -la 
 
-# Expone los puertos para el back-end y el front-end
-EXPOSE 7001
+# # Expone los puertos para el back-end y el front-end
+# EXPOSE 7001
 
-# El comando para ejecutar tu aplicación, ajusta según la necesidad de tu proyecto
-CMD ["sh", "-c", "medusa migrations run && npm start"]
+# # El comando para ejecutar tu aplicación, ajusta según la necesidad de tu proyecto
+# CMD ["sh", "-c", "medusa migrations run && npm start"]
