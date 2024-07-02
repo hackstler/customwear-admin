@@ -17,7 +17,7 @@ RUN ls -la
 
 EXPOSE 9000 7001
 
-RUN npm run start
+CMD ["sh", "-c", "medusa migrations run && npm start"]
 
 
 # RUN ls -la 
