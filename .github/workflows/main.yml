@@ -36,7 +36,7 @@ jobs:
           ssh -i key -o StrictHostKeyChecking=no $GCE_SSH_USER@$GCE_INSTANCE_IP << 'EOF'
           cd /home/sergio/customwear-admin
           git pull origin main
-          git push origin dokku
+          git push dokku main
           EOF
 
       - name: Finalizar despliegue

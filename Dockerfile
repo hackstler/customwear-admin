@@ -15,7 +15,7 @@ COPY . .
 # Construye el back-end de TypeScript y el front-end
 RUN npm run build
 
-EXPOSE 9000 7001
+EXPOSE 7001
 
 RUN ls -la 
 # Comienza una nueva etapa para producir una imagen limpia
@@ -29,7 +29,7 @@ COPY --from=builder /app ./
 RUN ls -la 
 
 # Expone los puertos para el back-end y el front-end
-EXPOSE 9000 7001
+EXPOSE 7001
 
 # El comando para ejecutar tu aplicación, ajusta según la necesidad de tu proyecto
 CMD ["sh", "-c", "medusa migrations run && npm start"]
