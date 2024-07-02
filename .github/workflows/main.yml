@@ -34,7 +34,7 @@ jobs:
           GCE_INSTANCE_IP: ${{ secrets.GCE_INSTANCE_IP }}
         run: |
           ssh -i key -o StrictHostKeyChecking=no $GCE_SSH_USER@$GCE_INSTANCE_IP << 'EOF'
-          cd /home/dokku/app/medusa-admin
+          cd /home/sergio/customwear-admin
           git pull origin main
           git push origin dokku
           EOF

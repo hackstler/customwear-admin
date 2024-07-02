@@ -12,9 +12,11 @@ RUN npm install
 
 # Copia el resto del código fuente del proyecto
 COPY . .
-
 # Construye el back-end de TypeScript y el front-end
 RUN npm run build
+
+EXPOSE 9000 7001
+
 RUN ls -la 
 # Comienza una nueva etapa para producir una imagen limpia
 FROM node:18
