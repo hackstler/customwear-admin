@@ -35,6 +35,7 @@ jobs:
         run: |
           ssh -i key -o StrictHostKeyChecking=no $GCE_SSH_USER@$GCE_INSTANCE_IP << 'EOF'
           cd /home/sergio/customwear-admin
+          sudo docker ps
           git pull origin main
           git push dokku main
           EOF
