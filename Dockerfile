@@ -1,5 +1,5 @@
 # Usa una imagen de Node.js como base
-FROM node:18 as builder
+FROM node:18
 
 # Establece el directorio de trabajo
 WORKDIR /app
@@ -13,7 +13,9 @@ RUN npm install
 # Copia el resto del código fuente del proyecto
 COPY . .
 # Construye el back-end de TypeScript y el front-end
-EXPOSE 7001
+RUN ls -la 
+
+EXPOSE 9000 7001
 
 RUN npm run start
 
