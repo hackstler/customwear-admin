@@ -1,0 +1,2 @@
+
+0 2 * * * /home/sergio/backups/script-autosave-db.sh >> /home/sergio/backups/backup.log 2>&1
