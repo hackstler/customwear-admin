@@ -30,7 +30,7 @@ jobs:
 
       - name: Desplegar a Dokku en Compute Engine
         env:
-          GCE_SSH_USER: ${{ secrets.GCE_SSH_USER }}cd
+          GCE_SSH_USER: ${{ secrets.GCE_SSH_USER }}
           GCE_INSTANCE_IP: ${{ secrets.GCE_INSTANCE_IP }}
         run: |
           ssh -i key -o StrictHostKeyChecking=no $GCE_SSH_USER@$GCE_INSTANCE_IP << 'EOF'
