@@ -14,6 +14,7 @@ Configurar proxy para el 443 ssl
 Configurar los puertos de nuestra app (Docu ports en dokku)
 
 Setear dominio
+//re
 
 Instalar plugin de letsencrypt
 
