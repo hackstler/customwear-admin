@@ -48,8 +48,6 @@ const plugins = [
     options: {
       api_key: process.env.SENDGRID_API_KEY,
       from: process.env.SENDGRID_FROM,
-      order_placed_template: process.env.SENDGRID_ORDER_PLACED_ID,
-      user_password_reset_template: process.env.SENDGRID_USER_PASSWORD_RESET_TEMPLATE,
 
     },
   },
@@ -95,6 +93,13 @@ const projectConfig = {
   database_url: DATABASE_URL,
   admin_cors: ADMIN_CORS,
   redis_url: REDIS_URL,
+  notification: {
+    events: {
+      "order.placed": {
+        enabled: false,
+      },
+    },
+  },
   // Uncomment the following lines to enable REDIS
   // redis_url: REDIS_URL
 };
