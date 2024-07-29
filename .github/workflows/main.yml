@@ -35,7 +35,7 @@ jobs:
         run: |
           ssh -i key -o StrictHostKeyChecking=no $GCE_SSH_USER@$GCE_INSTANCE_IP << 'EOF'
           cd /home/sergio/customwear-admin
-          sudo docker images prune -a -y
+          sudo docker system prune -a --volumes -f
           sudo dokku ps:stop medusa-admin
           git pull origin main
           git push dokku main
