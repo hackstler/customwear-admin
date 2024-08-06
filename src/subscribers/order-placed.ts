@@ -20,12 +20,20 @@ export default async function orderPlacedHandler({
   const order = await orderService.retrieve(data.id, {
     relations: ["items", "customer"],
   });
+  console.log(order)
 
   const formattedItems = order.items.map((item) => ({
+    imagen: item.thumbnail,
     nombre: item.title,
     cantidad: item.quantity,
-    precio: (item.unit_price / 100).toFixed(2), // Ajustar según sea necesario
+    precio: (item.unit_price / 100).toFixed(2),
+
   }));
+
+const ordertotal:number[] = formattedItems.map(item => +item.precio)
+  const InitialValue= 0
+  const total = ordertotal.reduce((acc, precio)=> acc + precio, InitialValue)
+
   console.log("🚀 ~ order.customer.first_name:", order.customer.first_name);
 
   await sendGridService.sendEmail({
@@ -35,7 +43,7 @@ export default async function orderPlacedHandler({
     dynamic_template_data: {
       nombre_cliente: order.customer.first_name,
       articulos: formattedItems,
-      total: (order.total / 100).toFixed(2), // Ajustar según sea necesario
+      total
     },
   });
 }
