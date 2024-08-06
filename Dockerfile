@@ -13,7 +13,8 @@ RUN npm install
 # Copia el resto del código fuente del proyecto
 COPY . .
 
-
+# Construye el back-end de TypeScript y el front-end
+RUN npm run build
 RUN ls -la 
 # Comienza una nueva etapa para producir una imagen limpia
 FROM node:18
@@ -29,4 +30,4 @@ RUN ls -la
 EXPOSE 9000 7001
 
 # El comando para ejecutar tu aplicación, ajusta según la necesidad de tu proyecto
-CMD ["sh", "-c", "medusa migrations run && npm start"]
+CMD ["sh", "-c", "medusa migrations run && npm start"] 
